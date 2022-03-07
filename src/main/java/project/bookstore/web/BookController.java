@@ -34,7 +34,7 @@ public class BookController {
 		return "addbook";
 	}
 	
-	// Endpoint save, joka tallenta lomakeen tiedot POST-metodin avulla. 
+	// Endpoint save, joka tallenta lomakkeen tiedot POST-metodin avulla. 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveBook(Book book) {
 		repository.save(book);
@@ -54,7 +54,6 @@ public class BookController {
 		model.addAttribute("book", repository.findById(id));
 		model.addAttribute("categories", crepository.findAll());
 		return "editbook";
-	}
-	
+	}	
 
 }
