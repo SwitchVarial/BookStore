@@ -12,14 +12,14 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row">
+		<div class="row mb-3">
 			<div class="col-md-3">
 				<h1>Add book</h1>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-6 mt-2">
 				<h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h2>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-3 mt-2">
 				<form th:action="@{/logout}" method="post">
 					<input class="btn btn-danger" type="submit" value="Sign Out"/>
 				</form>

@@ -23,6 +23,12 @@ public class BookstoreApplication {
 	public CommandLineRunner bookstore(BookRepository repository, CategoryRepository crepository, UserRepository urepository) {
 		return (args) -> {
 			
+			// H2 DB Add users admin/qwerty user/asdfg
+			User admin = new User("admin", "$2a$10$436p2H2MD/P4eN077xZd8Oww5Ajg8XWb5ez4cWxxcuMfGFqB5qb1K", "ADMIN");
+			User user = new User("user", "$2a$10$pJTPGPzrntDLBVVXKrOtA.Zy4BQvW2UsMOpPE7xcLhsRZfjmyI9.q", "USER");
+			urepository.save(admin);
+			urepository.save(user);
+			
 			// H2 DB add New categories
 			crepository.save(new Category("Runot"));
 			crepository.save(new Category("Tietokirjat"));
@@ -38,11 +44,6 @@ public class BookstoreApplication {
 			for (Book book : repository.findAll()) {
 				System.out.println(book.toString());
 				
-			// H2 DB Add users admin/qwerty user/asdfg
-			User admin = new User("admin", "$2a$10$436p2H2MD/P4eN077xZd8Oww5Ajg8XWb5ez4cWxxcuMfGFqB5qb1K", "ADMIN");
-			User user = new User("user", "$2a$10$pJTPGPzrntDLBVVXKrOtA.Zy4BQvW2UsMOpPE7xcLhsRZfjmyI9.q", "USER");
-			urepository.save(admin);
-			urepository.save(user);
 			}
 
 		};
