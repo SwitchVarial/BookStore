@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ public class BookController {
 	}
 	
 	// Endpointti add, joka ohjataan addbook.html ja sinne viedään uusi tyhjä kirja ja kategoriat
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/add")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
@@ -38,7 +40,8 @@ public class BookController {
 		return "addbook";
 	}
 	
-	// Endpoint save, joka tallenta lomakkeen tiedot POST-metodin avulla. 
+	// Endpoint save, joka tallenta lomakkeen tiedot POST-metodin avulla.
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveBook(Book book) {
 		repository.save(book);
@@ -46,6 +49,7 @@ public class BookController {
 	}
 	
 	// Endpoint, joka poistaa kirjaan id:n perusteella - käytetään GET metodia oikean id:n hakuun
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteBook(@PathVariable("id") Long id, Model model) {
 		repository.deleteById(id);
@@ -53,6 +57,7 @@ public class BookController {
 	}
 	
 	// Enpoint, joka muokkaa kirjaa, joka haetaan id:n perusteella - käytetään GET metodia oikean id:n hakuun.
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String editBook(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("book", repository.findById(id));
