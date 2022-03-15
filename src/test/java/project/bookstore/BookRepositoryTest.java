@@ -42,6 +42,7 @@ public class BookRepositoryTest {
 		Book book = new Book("Yhden illan käsityöt", "Elisa Lampela", "978-951-23-5564-8", 2012, 24.90, new Category("Käsityökirjat"));
 		bookRepository.save(book);
 		assertThat(book.getId()).isNotNull();
+		Assertions.assertThat(book.getAuthor()).isEqualTo("Elisa Lampela");
 	}
 	
 	// Delete book
